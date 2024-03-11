@@ -42,8 +42,17 @@ def preprocess_tweet(tweet):
     tweet = tweet.lower()
     # Replaces URLs with the word URL
     tweet = re.sub(r'((www\.[\S]+)|(https?://[\S]+))', ' URL ', tweet)
+    
     # Replace @handle with the word USER_MENTION
-    tweet = re.sub(r'@[\S]+', 'USER_MENTION', tweet)
+    # tweet = re.sub(r'@[\S]+', 'USER_MENTION', tweet)
+    
+    #find and log @userhandle
+    userHandle = re.findall(r'@[\S]+', tweet)
+    print(userHandle)
+    
+    #include @userhandle
+    tweet = re.findall(r'@[\S]+', tweet)
+    
     # Replaces #hashtag with hashtag
     tweet = re.sub(r'#(\S+)', r' \1 ', tweet)
     # Remove RT (retweet)
